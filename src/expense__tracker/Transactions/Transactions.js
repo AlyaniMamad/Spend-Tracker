@@ -4,7 +4,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import moment from "moment";
 import Animated from "react-native-reanimated";
 import { useValue, withTransition } from "react-native-redash";
-import { Ebg1 } from "../../../assets/images";
 import theme, { Box, Text } from "../../components/theme";
 import { Chart, AddIcon, Delete } from "../Svgs";
 
@@ -205,7 +204,7 @@ const Transactions = ({ navigation }) => {
                     </View>
                   </View>
                   <View style={[tw.p3]}>
-                    <Text style={[tw.textGreen700, tw.fontBold, { fontSize: 16 }]}>₹{item.price}</Text>
+                    <Text style={[item.price >= 0 ? tw.textGreen700 : tw.textRed700, tw.fontBold, { fontSize: 16 }]}>₹{item.price}</Text>
                   </View>
                 </TouchableOpacity>
               </>
@@ -216,9 +215,16 @@ const Transactions = ({ navigation }) => {
           sections={DATA}
         />
       </Box>
-      <Box style={{ position: "absolute", right: 20, bottom: 50, zIndex: 4 }}>
+      <Box style={{ position: "absolute", right: 20, bottom: 30, zIndex: 4 }}>
         <TouchableOpacity onPress={onNavigate}>
-          <AddIcon />
+
+          {/* <TouchableOpacity style={[tw.mB5, tw.absolute, { bottom: 10, right: 10, margin: 10, borderRadius: 50, display: 'flex', justifyContent: "center", alignItems: "center" }, tw.bgBlue800, tw.h16, tw.w16]} >
+            <Text style={[tw.text5xl, tw.textWhite]}>+</Text>
+          </TouchableOpacity> */}
+          {/* <AddIcon /> */}
+          <TouchableOpacity style={[tw.bgBlue900, tw.h30, tw.w30]}>
+            <Text style={[tw.text5xl, tw.textWhite]}>+</Text>
+          </TouchableOpacity>
         </TouchableOpacity>
       </Box>
     </ImageBackground>
